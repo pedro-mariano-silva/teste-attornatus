@@ -3,6 +3,11 @@ package com.pedro.henrique.attornatus.teste.app.model.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +38,8 @@ public class Pessoa {
 	@Column(name="nome")
 	private String nome;
 	
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
 	@Column(name="data_nasc")
 	private LocalDate dataNasc;
 	
